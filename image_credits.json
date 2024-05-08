@@ -1,0 +1,10 @@
+{
+  "dummy_image": {
+    "filename": "dummy_image.png",
+    "author": "Boris Gorelik",
+    "description": "Dummy image for testing purposes.",
+    "source": "Myself",
+    "url": null,
+    "license": "CC0"
+  }
+}

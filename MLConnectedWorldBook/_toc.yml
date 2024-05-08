@@ -1,9 +1,16 @@
-# Table of contents
-# Learn more at https://jupyterbook.org/customize/toc.html
-
 format: jb-book
-root: chap00
-chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
+title: "Machine Learning in the Connected World"
+root: index
+parts:
+  - caption: "Introduction to the connected world"
+    chapters:
+      - file: part_00_introduction
+  - caption: "Part 1: Connecting the Dots"
+    chapters:
+      - file: part_01_connecting_the_dots
+      - file: part_01_ch01_basic_principles
+      - file: part_01_ch02_degrees_and_distances
+  - caption: "Part 2: Measuring Importance"
+    chapters:
+      - file: part_02_measuring_importance
+      - file: part_02_ch01_centrality
