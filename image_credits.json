@@ -6,5 +6,29 @@
     "source": "Myself",
     "url": null,
     "license": "CC0"
+  },
+  "simple_undirected_graph": {
+    "filename": "simple_undirected_graph.png",
+    "author": "Boris Gorelik",
+    "description": "A simple undirected graph.",
+    "source": "Myself",
+    "url": null,
+    "license": "CC0"
+  },
+  "simple_directed_graph": {
+    "filename": "simple_directed_graph.png",
+    "author": "Boris Gorelik",
+    "description": "A simple directed graph.",
+    "source": "Myself",
+    "url": null,
+    "license": "CC0"
+  },
+  "multilayer_graph": {
+    "filename": "multilayer_graph.png",
+    "author": "Boris Gorelik",
+    "description": "A multilayer graph.",
+    "source": "Myself",
+    "url": null,
+    "license": "CC0"
   }
 }
