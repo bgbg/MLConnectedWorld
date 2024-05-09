@@ -1,0 +1,47 @@
+from,from_gender,to,to_gender,seriousness,is_cheat
+lexi,F,sloan,M,7,no
+lexi,F,karev,M,3,no
+owen,M,yang,F,8,no
+owen,M,altman,F,4,yes
+sloan,M,torres,F,2,no
+sloan,M,altman,F,3,yes
+torres,F,arizona,F,9,no
+torres,F,karev,M,2,no
+derek,M,grey,F,10,no
+karev,M,izzie,F,8,no
+o'malley,M,izzie,F,6,yes
+torres,F,o'malley,M,5,no
+yang,F,colin,M,2,no
+yang,F,preston,M,7,no
+karev,M,kepner,F,3,no
+sloan,M,addison,F,4,yes
+karev,M,addison,F,3,yes
+derek,M,addison,F,7,no
+sloan,M,nancy,F,1,yes
+karev,M,olivia,F,2,no
+o'malley,M,olivia,F,3,no
+grey,F,o'malley,M,5,no
+karev,M,mrs. seabury,F,1,yes
+chief,M,adele,F,10,no
+chief,M,ellis grey,F,5,yes
+ellis grey,F,thatch grey,M,7,no
+susan grey,F,thatch grey,M,5,yes
+bailey,F,tucker,M,8,no
+izzie,F,hank,M,2,no
+izzie,F,denny,M,9,no
+grey,F,finn,M,4,no
+grey,F,steve,M,1,no
+bailey,F,ben,M,9,no
+lexi,F,avery,M,6,no
+meredith grey,F,derek shepherd,M,10,no
+meredith grey,F,finn dandridge,M,4,no
+meredith grey,F,nathan riggs,M,6,no
+amelia shepherd,F,owen hunt,M,7,no
+amelia shepherd,F,link,M,6,no
+amelia shepherd,F,james peterson,M,5,no
+maggie pierce,F,jackson avery,M,6,no
+maggie pierce,F,andrew deluca,M,5,no
+jo wilson,F,alex karev,M,8,no
+jo wilson,F,jason myers,M,4,no
+andrew deluca,M,meredith grey,F,6,no
+andrew deluca,M,maggie pierce,F,5,no

@@ -18,6 +18,44 @@ The sixth part "Advanced topics" covers other relevant topics in machine learnin
 
 
 
+## Alternative Outline: Unveiling the Power of Networks with Machine Learning
+
+This book introduces you to the fascinating world of machine learning on graphs. It's a hands-on journey where you'll learn by doing through real-world projects.
+
+Each part introduces a new concept, dives into the theory, and then equips you to tackle a practical problem. 
+
+The beginning sections will introduce foundational graph concepts:
+
+* **Part 1: Building Blocks of Networks** (Key Concepts: Graphs, Nodes, Edges, Directed vs Undirected Graphs, In-degree, Out-degree)
+    * Chapter 1: Mapping the Landscape: Graph Fundamentals and Terminology
+    * Chapter 2: Python for Graphs: Tools of the Trade
+
+* **Part 2: Unveiling Network Structure** (Key Concepts: Communities, Modularity, Girvan-Newman Algorithm, Louvain Method)
+    * Chapter 3: Dividing and Conquering: The Girvan-Newman Algorithm for Communities
+    * Chapter 4: Smart Clustering: The Louvain Method for Communities
+
+**Part 3: Small Worlds and Network Influence** (Key Concepts: Small-World Networks, PageRank, Degree Centrality, Betweenness Centrality)
+
+* Chapter 5: Six Degrees of Separation: Introduction to Small-World Networks
+* Chapter 6: Ranking and Influence: PageRank and Centrality Measures
+    * Explore PageRank and its connection to web search ranking.
+    * Introduce Degree Centrality and Betweenness Centrality.
+
+**Part 4: Information Flow and Advanced Techniques** (Key Concepts: Diffusion Models, Influence Maximization, Graph Motifs, Subgraph Isomorphism, Network Motifs and their Significance, Graph Neural Networks, Temporal Networks, Dynamic Graphs)
+
+* Chapter 7: The Ripple Effect: How Information Spreads in Networks (Diffusion Models)
+* Chapter 8: Identifying Spreaders: Influence Maximization
+* Chapter 9: Finding Repeated Patterns: Introduction to Graph Motifs
+* Chapter 10: Unearthing Hidden Structures: Subgraph Isomorphism
+* Chapter 11: Meaningful Patterns: The Significance of Motifs in Applications like Fraud Detection
+* Chapter 12: Learning from Networks: Graph Neural Networks
+* Chapter 13: Networks Through Time: Temporal Networks
+* Chapter 14: Evolving Networks: Dynamic Graphs
+* Chapter 15: Pushing the Boundaries: Advanced Applications of Machine Learning on Graphs
+
+
+
+
 
 ```{tableofcontents}
 ```
