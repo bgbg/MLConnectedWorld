@@ -1,34 +1,64 @@
 {
-  "dummy_image": {
-    "filename": "dummy_image.png",
-    "author": "Boris Gorelik",
-    "description": "Dummy image for testing purposes.",
-    "source": "Myself",
-    "url": null,
-    "license": "CC0"
+  "figures": {
+    "dummy_image": {
+      "filename": "dummy_image.png",
+      "author": "Boris Gorelik",
+      "description": "Dummy image for testing purposes.",
+      "source": "Myself",
+      "url": null,
+      "license": "CC0"
+    },
+    "simple_undirected_graph": {
+      "filename": "simple_undirected_graph.png",
+      "author": "Boris Gorelik",
+      "description": "A simple undirected graph.",
+      "source": "Myself",
+      "url": null,
+      "license": "CC0"
+    },
+    "simple_directed_graph": {
+      "filename": "simple_directed_graph.png",
+      "author": "Boris Gorelik",
+      "description": "A simple directed graph.",
+      "source": "Myself",
+      "url": null,
+      "license": "CC0"
+    },
+    "multilayer_graph": {
+      "filename": "multilayer_graph.png",
+      "author": "Boris Gorelik",
+      "description": "A multilayer graph.",
+      "source": "Myself",
+      "url": null,
+      "license": "CC0"
+    }
   },
-  "simple_undirected_graph": {
-    "filename": "simple_undirected_graph.png",
-    "author": "Boris Gorelik",
-    "description": "A simple undirected graph.",
-    "source": "Myself",
-    "url": null,
-    "license": "CC0"
-  },
-  "simple_directed_graph": {
-    "filename": "simple_directed_graph.png",
-    "author": "Boris Gorelik",
-    "description": "A simple directed graph.",
-    "source": "Myself",
-    "url": null,
-    "license": "CC0"
-  },
-  "multilayer_graph": {
-    "filename": "multilayer_graph.png",
-    "author": "Boris Gorelik",
-    "description": "A multilayer graph.",
-    "source": "Myself",
-    "url": null,
-    "license": "CC0"
+  "data": {
+    "greys_anatomy": {
+      "filename": "greys_anatomy.csv",
+      "author": "Boris Gorelik",
+      "description": "A dataset of characters from the TV show Grey's Anatomy. Obtained from ChatGPT. May contain errors.",
+      "source": "Myself",
+      "url": null,
+      "license": "CC0"
+    },
+    "corporate_directional": {
+      "filename": "corporate_directional.csv",
+      "author": "Boris Gorelik",
+      "description": "A dataset of directed corporate collaboration network. Based on private data, anonymized and modified.",
+      "source": "Myself",
+      "url": null,
+      "license": "CC0"
+    },
+    "corporate_undirected": {
+      "filename": "corporate_undirected.csv",
+      "author": "Boris Gorelik",
+      "description": "A dataset of undirected corporate collaboration network. Based on private data, anonymized and modified.",
+      "source": "Myself",
+      "url": null,
+      "license": "CC0"
+    }
   }
 }
+
+
