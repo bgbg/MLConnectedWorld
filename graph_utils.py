@@ -4,14 +4,20 @@ from datetime import timedelta
 from typing import Union
 
 import networkx as nx
+import pandas as pd
 from cachier import cachier
 import tempfile
 
 
 @cachier(stale_after=timedelta(days=100))
 def get_graph(dataset_name) -> Union[nx.Graph, list]:
-    """Load a graph from SNAP dataset"""
-    url_base = "https://snap.stanford.edu/data/"
+    """Load a graph from a data collection repository"""
+
+    dir_this = os.path.dirname(os.path.abspath(__file__))
+    dir_book = os.path.join(dir_this, "MLConnectedWorldBook")
+    dir_data = os.path.join(dir_book, "data")
+    assert os.path.exists(dir_data), f"Data directory {dir_data} not found"
+
     data_names = {
         "ca-AstroPh": "ca-AstroPh.txt.gz",
         "ca-CondMat": "ca-CondMat.txt.gz",
@@ -20,8 +26,32 @@ def get_graph(dataset_name) -> Union[nx.Graph, list]:
         "ca-HepTh": "ca-HepTh.txt.gz",
         # "cit-Patents": "cit-Patents.txt.gz",
     }
+
     if dataset_name == "list":
         return list(data_names.keys())
+
+    dataset_path = None
+    for extension in ["", ".csv", ".csv.gz"]:
+        curr = os.path.join(dir_data, dataset_name + extension)
+        if os.path.exists(curr):
+            dataset_path = curr
+            break
+    if dataset_path is not None:
+        # found locally
+        df = pd.read_csv(dataset_path)
+        assert "src" in df.columns, f"Column 'src' not found in {dataset_path}"
+        assert "dst" in df.columns, f"Column 'dst' not found in {dataset_path}"
+        edge_attr = [c for c in df.columns if c not in ["src", "dst"]]
+        G = nx.from_pandas_edgelist(
+            df,
+            source="src",
+            target="dst",
+            edge_attr=edge_attr,
+        )
+        return G
+
+    url_base = "https://snap.stanford.edu/data/"
+
     if dataset_name.endswith(".txt.gz"):
         url = dataset_name
         if not url.startswith("http"):
@@ -57,3 +87,10 @@ def get_info(G: nx.Graph):
     else:
         ret.append("Graph is not connected")
     return "\n".join(ret)
+
+
+if __name__ == "__main__":
+    n = "corporate_undirected.csv"
+    get_graph.clear_cache()
+    g = get_graph(n)
+    print(get_info(g))
