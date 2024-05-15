@@ -11,7 +11,7 @@ def figure_dir(book_dir):
 
 @pytest.fixture
 def image_credit_file(project_dir):
-    return os.path.join(project_dir, "image_credits.json")
+    return os.path.join(project_dir, "data_credits.json")
 
 
 def test_every_figure_has_a_credit(figure_dir, image_credit_file):
