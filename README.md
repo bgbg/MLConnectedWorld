@@ -1,4 +1,4 @@
-# mv 
+# Machine Learning in the Connected World
 
 This project is an ongoing courseware for the course "Machine Learning on Graphs". 
 The overall approach and teaching philosophy are inspired by the "Think X" series of books by Allen B. Downey. I studied and have been teaching from his books for years and I am a big fan of his work. 
