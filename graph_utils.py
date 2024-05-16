@@ -8,6 +8,39 @@ import pandas as pd
 from cachier import cachier
 import tempfile
 
+dir_this = os.path.dirname(os.path.abspath(__file__))
+dir_data = os.path.join(dir_this, "MLConnectedWorldBook", "data")
+assert os.path.exists(dir_data), f"Data directory {dir_data} not found"
+
+
+def get_rabbi_quotation_data() -> nx.DiGraph:
+    fn = os.path.join(dir_data, "rabbi_quotes.csv")
+    assert os.path.exists(fn), f"File {fn} not found"
+    df = pd.read_csv(fn)[
+        [
+            "first_rabbi_after_link",
+            "second_rabbi_after_link",
+            "first_rabbi_after_link_id",
+            "second_rabbi_after_link_id",
+            "token_string",
+        ]
+    ]
+    df_edges = (
+        df[["first_rabbi_after_link", "second_rabbi_after_link"]]
+        .value_counts(normalize=True)
+        .reset_index()
+    )
+    df_edges.columns = ["from", "to", "weight"]
+    G = nx.from_pandas_edgelist(
+        df_edges,
+        "from",
+        "to",
+        "weight",
+        create_using=nx.DiGraph,
+    )
+    G.name = "Rabbi quotation network"
+    return G
+
 
 def get_graph(dataset_name: str) -> Union[nx.Graph, list]:
     """Load a graph from a data collection repository or list available datasets."""
@@ -18,10 +51,14 @@ def get_graph(dataset_name: str) -> Union[nx.Graph, list]:
         "ca-GrQc": "ca-GrQc.txt.gz",
         "ca-HepPh": "ca-HepPh.txt.gz",
         "ca-HepTh": "ca-HepTh.txt.gz",
+        "rabbi_quotation_data": get_rabbi_quotation_data,
     }
 
     if dataset_name == "list":
         return list(data_names.keys())
+
+    if callable(data_names.get(dataset_name, None)):
+        return data_names[dataset_name]()
 
     try:
         return load_graph_from_local(dataset_name)
@@ -37,9 +74,6 @@ def get_graph(dataset_name: str) -> Union[nx.Graph, list]:
 
 def load_graph_from_local(dataset_name: str) -> nx.Graph:
     """Load a graph from a local file."""
-    dir_this = os.path.dirname(os.path.abspath(__file__))
-    dir_data = os.path.join(dir_this, "MLConnectedWorldBook", "data")
-    assert os.path.exists(dir_data), f"Data directory {dir_data} not found"
 
     for extension in ["", ".csv", ".csv.gz"]:
         dataset_path = os.path.join(dir_data, dataset_name + extension)
@@ -81,3 +115,17 @@ def get_info(G: nx.Graph):
     else:
         ret.append("Graph is not connected")
     return "\n".join(ret)
+
+
+def get_connected_component_subgraphs(G: nx.Graph) -> list:
+    """Get connected components of a graph"""
+    if nx.is_directed(G):
+        tmp = G.to_undirected()
+    else:
+        tmp = G
+    components = [G.subgraph(c).copy() for c in nx.connected_components(tmp)]
+    # sort by node count
+    components.sort(key=lambda x: x.number_of_nodes(), reverse=True)
+    for i in range(len(components)):
+        components[i].name = f"Component {i+1} of {G.name}"
+    return components
