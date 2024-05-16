@@ -57,6 +57,22 @@
       "source": "Myself",
       "url": null,
       "license": "CC0"
+    },
+    "rabbi_quotes": {
+      "filename": "rabbi_quotes.csv",
+      "author": "Michael Sperling and Michael Satlow",
+      "description": "A dataset of quotes from rabbis. Obtained from Michael Satlow and Michael Sperling, The Rabbinic Citation Network",
+      "source": "https://www.researchgate.net/publication/343539513_rabbi_quote_with_ids",
+      "url": "http://www.rabbiniccitations.jewishstudies.digitalscholarship.brown.edu/blog/the-citation-networks/",
+      "license": "UNKNOWN"
+    },
+    "pre_wwi_alliances": {
+      "filename": "pre_wwi_alliances.csv",
+      "author": "Correlates of War Project",
+      "description": "A dataset of pre-World War I alliances. Based on 'Correlates of war' .",
+      "source": "Correlates of war https://correlatesofwar.org",
+      "url": "https://correlatesofwar.org/wp-content/uploads/version4.1_csv.zip",
+      "license": "Unknown"
     }
   }
 }
