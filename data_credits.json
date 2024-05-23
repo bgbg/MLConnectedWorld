@@ -73,6 +73,14 @@
       "source": "Correlates of war https://correlatesofwar.org",
       "url": "https://correlatesofwar.org/wp-content/uploads/version4.1_csv.zip",
       "license": "Unknown"
+    },
+    "podcasts": {
+      "filename": "podcasts.json",
+      "author": "Boris Gorelik",
+      "description": "A dataset of Hebrew language podcasts. Obtained from podcastindex.org, filtered and processed.",
+      "source": "Myself",
+      "url": null,
+      "license": "CC0"
     }
   }
 }
