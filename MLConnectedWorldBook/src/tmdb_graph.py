@@ -103,12 +103,13 @@ def get_graph_with_credit_info(
     df_credit_edges = pd.DataFrame(credit_edges)
 
     g_multi = nx.MultiGraph()
-    for u, v, data in g_movies_and_keywords.edges(data=True):
-        g_multi.add_edge(u, v, key="HAS_KEYWORD", **data)
 
     # Preserve node attributes including type
     for node, data in g_movies_and_keywords.nodes(data=True):
         g_multi.add_node(node, **data)
+
+    for u, v, data in g_movies_and_keywords.edges(data=True):
+        g_multi.add_edge(u, v, key="HAS_KEYWORD", **data)
 
     # Add the edges to the graph, and add nodes if they don't exist
     for _, row in tqdm(
