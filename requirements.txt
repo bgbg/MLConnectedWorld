@@ -4,6 +4,7 @@ black[jupyter]
 cachier
 catboost
 jupyter
+jupyter-book
 matplotlib
 networkx
 numpy

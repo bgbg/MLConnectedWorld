@@ -81,6 +81,14 @@
       "source": "Myself",
       "url": null,
       "license": "CC0"
+    },
+    "df_node_disambiguation_task": {
+      "filename": "df_node_disambiguation_task.csv",
+      "author": "Boris Gorelik",
+      "description": "A dataset of a node disambiguation  task. Based on ca-HepPh data. See generate_node_based_dataset.py for details.",
+      "source": "Myself",
+      "url": null,
+      "license": "CC0"
     }
   }
 }
