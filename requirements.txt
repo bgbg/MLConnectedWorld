@@ -8,10 +8,11 @@ cachier
 jupyter
 argostranslate
 transformers
-torch
 black
 black[jupyter]
 yake
 scipy
 statsmodels
 spacy
+catboost
+shap

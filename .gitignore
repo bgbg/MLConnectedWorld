@@ -29,3 +29,4 @@ pip-log.txt
 # Jupyter book build
 _build
 MLConnectedWorldBook/_build
+MLConnectedWorldBook/catboost_info
