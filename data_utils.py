@@ -101,6 +101,28 @@ def load_graph_from_web(filename: str) -> nx.Graph:
     return G
 
 
+@cachier(stale_after=timedelta(days=100))
+def load_dataset_from_web(filename: str) -> pd.DataFrame:
+    """Download and load a dataset from the web."""
+    url_base = "https://snap.stanford.edu/data/"
+    url = url_base + filename
+    with tempfile.TemporaryDirectory() as tmpdirname:
+        fn = os.path.join(tmpdirname, "dataset.csv.gz")
+        urllib.request.urlretrieve(url, fn)
+        df = pd.read_csv(fn, comment="#", sep="\t", header=None)
+    return df
+
+
+def load_dataset_from_local(dataset_name: str) -> pd.DataFrame:
+    """Load a dataset from a local file."""
+    for extension in ["", ".csv", ".csv.gz"]:
+        dataset_path = os.path.join(dir_data, dataset_name + extension)
+        if os.path.exists(dataset_path):
+            df = pd.read_csv(dataset_path)
+            return df
+    raise FileNotFoundError("Local dataset file not found")
+
+
 def get_info(G: nx.Graph):
     """Get info about a graph"""
     ret = []
