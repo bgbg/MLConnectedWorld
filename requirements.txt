@@ -6,6 +6,7 @@ catboost
 jupyter
 jupyter-book
 matplotlib
+matplotlib-venn
 networkx
 numpy
 pandas

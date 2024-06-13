@@ -78,12 +78,21 @@ def load_graph_from_local(dataset_name: str) -> nx.Graph:
     for extension in ["", ".csv", ".csv.gz"]:
         dataset_path = os.path.join(dir_data, dataset_name + extension)
         if os.path.exists(dataset_path):
+            directed = False
+            for d in ("directed", "directional"):
+                if d in dataset_name:
+                    directed = True
+                    break
             df = pd.read_csv(dataset_path)
             assert "src" in df.columns, f"Column 'src' not found in {dataset_path}"
             assert "dst" in df.columns, f"Column 'dst' not found in {dataset_path}"
             edge_attr = [c for c in df.columns if c not in ["src", "dst"]]
             G = nx.from_pandas_edgelist(
-                df, source="src", target="dst", edge_attr=edge_attr
+                df,
+                source="src",
+                target="dst",
+                edge_attr=edge_attr,
+                create_using=nx.DiGraph if directed else nx.Graph,
             )
             return G
     raise FileNotFoundError("Local dataset file not found")
@@ -102,14 +111,14 @@ def load_graph_from_web(filename: str) -> nx.Graph:
 
 
 @cachier(stale_after=timedelta(days=100))
-def load_dataset_from_web(filename: str) -> pd.DataFrame:
+def load_dataset_from_web(filename: str, sep="\t") -> pd.DataFrame:
     """Download and load a dataset from the web."""
     url_base = "https://snap.stanford.edu/data/"
     url = url_base + filename
     with tempfile.TemporaryDirectory() as tmpdirname:
         fn = os.path.join(tmpdirname, "dataset.csv.gz")
         urllib.request.urlretrieve(url, fn)
-        df = pd.read_csv(fn, comment="#", sep="\t", header=None)
+        df = pd.read_csv(fn, comment="#", sep=sep, header=None)
     return df
 
 
