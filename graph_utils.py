@@ -1,6 +1,8 @@
+import math
 import warnings
 from datetime import timedelta
 from io import BytesIO
+from itertools import combinations
 from typing import Literal
 
 import matplotlib.offsetbox as offsetbox
@@ -11,6 +13,7 @@ import seaborn as sns
 from PIL import Image
 from cachier import cachier
 from matplotlib import pyplot as plt
+from tqdm.auto import tqdm
 
 
 @cachier(stale_after=timedelta(days=100))
@@ -168,6 +171,102 @@ def plot_triad_census(
         ax.set_xlabel("Count")
     sns.despine(ax=ax, left=True, bottom=True)
     return ax
+
+
+def get_triad_type(triad):
+    """
+    Determine the type of triad based on the number of edges in an undirected graph.
+
+    Parameters:
+    triad (networkx.Graph): The triad subgraph.
+
+    Returns:
+    str: The triad type.
+    """
+    edges = triad.number_of_edges()
+    if edges == 0:
+        return "003"
+    elif edges == 1:
+        return "012"
+    elif edges == 2:
+        return "102"
+    elif edges == 3:
+        return "300"
+    return "Unknown"
+
+
+def triadic_metrics_undirected(G):
+    """
+    Calculate triadic closure metrics and triad types for each node in an undirected graph.
+
+    Parameters:
+    G (networkx.Graph): The input graph.
+
+    Returns:
+    pd.DataFrame: A dataframe with the node id as an index and the following columns:
+        - clustering_coefficient: The clustering coefficient of the node.
+        - closed_triads: The number of closed triads (triangles) the node participates in.
+        - open_triads: The number of open triads (two-edge paths) the node is part of.
+        - triad_<type>: The count of each triad type the node is part of.
+    """
+    triad_labels = {
+        "003": "No edges",
+        "012": "Single edge",
+        "102": 'Two edges forming a "V"',
+        "300": "Full triad",
+    }
+
+    data = {
+        "clustering_coefficient": [],
+        "closed_triads": [],
+        "open_triads": [],
+        **{f"triad_{label}": [] for label in triad_labels.values()},
+    }
+
+    node_triads = {
+        node: {label: 0 for label in triad_labels.values()} for node in G.nodes()
+    }
+
+    total_combinations = math.comb(G.number_of_nodes(), 3)
+
+    for nodes in tqdm(
+        combinations(G.nodes(), 3),
+        total=total_combinations,
+        desc="Calculating triads",
+        leave=False,
+    ):
+        subgraph = G.subgraph(nodes)
+        triad_type = get_triad_type(subgraph)
+        if triad_type in triad_labels:
+            label = triad_labels[triad_type]
+            for node in nodes:
+                node_triads[node][label] += 1
+
+    for n in tqdm(
+        G.nodes(),
+        total=G.number_of_nodes(),
+        desc="Calculating metrics",
+        leave=False,
+    ):
+        clustering_coefficient = nx.clustering(G, n)
+        closed_triads = 0
+        open_triads = 0
+        for neighbor in G.neighbors(n):
+            for second_neighbor in G.neighbors(neighbor):
+                if second_neighbor != n:
+                    if G.has_edge(n, second_neighbor):
+                        closed_triads += 1
+                    else:
+                        open_triads += 1
+
+        data["clustering_coefficient"].append(clustering_coefficient)
+        data["closed_triads"].append(closed_triads // 2)
+        data["open_triads"].append(open_triads)
+        for label in triad_labels.values():
+            data[f"triad_{label}"].append(node_triads[n][label])
+
+    df = pd.DataFrame(data, index=G.nodes())
+    return df
 
 
 if __name__ == "__main__":

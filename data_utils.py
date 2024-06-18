@@ -124,11 +124,19 @@ def load_dataset_from_web(filename: str, sep="\t") -> pd.DataFrame:
 
 def load_dataset_from_local(dataset_name: str) -> pd.DataFrame:
     """Load a dataset from a local file."""
+
     tried = []
     for extension in ["", ".csv", ".csv.gz"]:
         dataset_path = os.path.join(dir_data, dataset_name + extension)
         if os.path.exists(dataset_path):
             df = pd.read_csv(dataset_path)
+            return df
+        tried.append(dataset_path)
+    # try pickle
+    for extension in [".pkl", ".pkl.gz"]:
+        dataset_path = os.path.join(dir_data, dataset_name + extension)
+        if os.path.exists(dataset_path):
+            df = pd.read_pickle(dataset_path)
             return df
         tried.append(dataset_path)
     raise FileNotFoundError("Local dataset file not found. Tried: " + ", ".join(tried))
