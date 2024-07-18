@@ -20,3 +20,6 @@ statsmodels
 tqdm
 transformers
 yake
+
+altair
+nx-altair

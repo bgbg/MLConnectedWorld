@@ -90,6 +90,14 @@
       "url": null,
       "license": "CC0"
     }
+  },
+  "montagna_meetings_edgelist": {
+    "filename": "Montagna_meetings_edgelist.csv",
+    "author": "Mael Fabien",
+    "description": "A dataset of meetings between members of the Montagna family. Obtained from Mael Fabien, The Montagna Family Network",
+    "source": "https://github.com/maelfabien/NetworkDisruption/tree/master/Datasets",
+    "url": "https://github.com/maelfabien/NetworkDisruption/blob/master/Datasets/Montagna_phonecalls_edgelist.txt",
+    "license": "UNKNOWN"
   }
 }
 
